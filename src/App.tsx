@@ -1,34 +1,54 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [answer, setAnswer] = useState('')
+  const [noStyle, setNoStyle] = useState({})
+
+  const handleNoClick = () => {
+    const x = Math.random() * 300 - 150
+    const y = Math.random() * 300 - 150
+    setNoStyle({
+      transform: `translate(${x}px, ${y}px)`
+    })
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="container">
+      <h1>💖 Happy Valentine’s Day 💖</h1>
+
+      {answer === '' && (
+        <>
+          <p className="question">
+            Will you be my Valentine? 🌹
+          </p>
+
+          <div className="buttons">
+            <button className="yes" onClick={() => setAnswer('yes')}>
+              Yes 💕
+            </button>
+
+            <button
+              className="no"
+              style={noStyle}
+              onMouseEnter={handleNoClick}
+            >
+              No 😅
+            </button>
+          </div>
+        </>
+      )}
+
+      {answer === 'yes' && (
+        <div className="yes-message">
+          <h2>YAYYY 💘</h2>
+          <p>
+            I can’t wait to spend Valentine’s Day with you 💕  
+            Thank you for making me happy every day 🌸
+          </p>
+        </div>
+      )}
+    </div>
   )
 }
 
